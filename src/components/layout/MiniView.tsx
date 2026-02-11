@@ -216,12 +216,11 @@ export default function MiniView() {
                         <button
                             onClick={handleRefresh}
                             className={clsx(
-                                "p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-white/10 transition-colors",
-                                isRefreshing && "animate-spin text-blue-500"
+                                "p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-white/10 transition-colors" 
                             )}
                             title={t('common.refresh', 'Refresh')}
                         >
-                            <RefreshCw size={14} />
+                            <RefreshCw size={14} className={clsx(isRefreshing && "animate-spin text-blue-500")}/>
                         </button>
                         <div className="w-px h-3 bg-gray-300 dark:bg-white/20 mx-1" />
                         <button
@@ -286,7 +285,7 @@ export default function MiniView() {
                             animate={{ opacity: 1, y: 0 }}
                             className="flex items-center w-full gap-2"
                         >
-                            <span className={`badge badge-sm text-white border-none ${latestLog.status >= 200 && latestLog.status < 400 ? 'badge-success' : 'badge-error'}`}>{latestLog.status}</span>
+                            <span title={latestLog.status.toString()} className={`w-1.5 h-1.5 rounded-full  ${latestLog.status >= 200 && latestLog.status < 400 ? 'bg-emerald-500' : 'bg-red-500'}`}>{latestLog.status.toString().substring(0,1)}</span>
                             <span className="font-bold truncate max-w-[100px]" title={latestLog.model}>
                                 {latestLog.mapped_model || latestLog.model}
                             </span>
